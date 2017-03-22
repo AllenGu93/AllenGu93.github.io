@@ -179,8 +179,10 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>monolog和mongodb的强强联手<br>网站日志管理中将这两把利剑同时使用，效果如何，之后续……<br>因为这个日志管理还没做完，我边搜集资料边完成项目，文章会从“这是什么”，“为什么要用它”，“如何用”这三个方面展开。<br>首先介绍一下这两位superstar:</p>
+<p>###monolog</p>
 <blockquote>
 <p>Monolog是php下比较全又容易扩展的记录日志类库。目前有包括Symfony 、Laravel、 CakePHP等诸多<br>知名php框架都内置了Monolog。Monolog可以把你的日志发送到文件，sockets，收件箱，数据库和各种<br>web services。<br>Monolog遵循PSR3的接口规范，可以很轻易的替换成其他遵循同一规范的日志类库。Monolog具有良好的<br>扩展性，通过Handler、Formatter和Processor这几个接口，可以对Monolog类库进行各种扩展和自定<br>义。</p>
+<p>###mongodb<br>MongoDB is not a key/value store, it’s quite a bit more. It’s definitely not<br>a RDBMS either. I haven’t used MongoDB in production, but I have used it a<br>little building a test app and it is a very cool piece of kit. It seems to be<br>very performant and either has, or will have soon, fault tolerance and<br>auto-sharding (aka it will scale). I think Mongo might be the closest thing<br>to a RDBMS replacement that I’ve seen so far. It won’t work for all data sets<br>and access patterns, but it’s built for your typical CRUD stuff. Storing what<br>is essentially a huge hash, and being able to select on any of those keys, is<br>what most people use a relational database for. If your DB is 3NF and you<br>don’t do any joins (you’re just selecting a bunch of tables and putting all<br>the objects together, AKA what most people do in a web app), MongoDB would<br>probably kick ass for you.</p>
 </blockquote>
 
       
