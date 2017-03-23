@@ -19,7 +19,7 @@
 
 对于这个模态框，我想先从最简单的文档开始，然后追溯他的源码。">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/WallpaperStudio10-19166.jpg">
-<meta property="og:updated_time" content="2017-03-23T17:59:53.140Z">
+<meta property="og:updated_time" content="2017-03-23T18:03:33.420Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bootstrap之model填坑">
 <meta name="twitter:description" content="bootstrap是我最早听说的前端框架，以其简单实用，栅格式布局的响应移动端，一度成为搭建后台乃至前台界面的顶梁柱。 之前看过很多次都没有把模态框(model)搞懂，这次来，就是为了填坑。不搞懂，不睡觉。(立FLAG小王子^_^)
@@ -192,7 +192,7 @@
 <p>模态框的js是model.js，因为是针对此模块的实验，所以只引用此js，但是因为bootstrap的js全部依赖于jquery，所以在引用model.js之前把jquery引进去，否则找不到原因，会很*疼~<br>用前须知：</p>
 <blockquote>
 <p>不支持同时打开多个模态框<br>千万不要在一个模态框上重叠另一个模态框。要想同时支持多个模态框，需要自己写额外的代码来实现。</p>
-<p>模态框的HTML代码放置的位置<br>务必将模态框的 HTML 代码放在文档的======最高层级内======（也就是说，尽量作为 body 标签的直接子元素），以避免其他组件影响模态框的展现和/或功能。</p>
+<p>模态框的HTML代码放置的位置<br>务必将模态框的 HTML 代码放在文档的最高层级内（也就是说，尽量作为 body标签的直接子元素），以避免其他组件影响模态框的展现和/或功能。</p>
 </blockquote>
 
       
