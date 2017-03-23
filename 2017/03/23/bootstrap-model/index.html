@@ -19,7 +19,7 @@
 
 对于这个模态框，我想先从最简单的文档开始，然后追溯他的源码。">
 <meta property="og:image" content="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/WallpaperStudio10-19166.jpg">
-<meta property="og:updated_time" content="2017-03-23T16:32:24.496Z">
+<meta property="og:updated_time" content="2017-03-23T17:43:28.233Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="bootstrap之model填坑">
 <meta name="twitter:description" content="bootstrap是我最早听说的前端框架，以其简单实用，栅格式布局的响应移动端，一度成为搭建后台乃至前台界面的顶梁柱。 之前看过很多次都没有把模态框(model)搞懂，这次来，就是为了填坑。不搞懂，不睡觉。(立FLAG小王子^_^)
@@ -189,6 +189,11 @@
 </blockquote>
 <p>对于bootstrap的基本css不想再在这里絮叨，之后会开一个帖子关于自己带有后台管理的博客系统，那里会着重使用这些强大的框架，完成后台的搭建工作。现在就着眼model，goal:实现model的熟练使用，了解model的核心思想。</p>
 <p>版本:bootstrap v3, 参考网址(<a href="http://v3.bootcss.com/" target="_blank" rel="external">bootstrap中文网</a>)</p>
+<p>模态框的js是model.js，因为是针对此模块的实验，所以只引用此js，但是因为bootstrap的js全部依赖于jquery，所以在引用model.js之前把jquery引进去，否则找不到原因，会很*疼~<br>用前须知：</p>
+<blockquote>
+<p>不支持同时打开多个模态框<br>千万不要在一个模态框上重叠另一个模态框。要想同时支持多个模态框，需要自己写额外的代码来实现。</p>
+</blockquote>
+<p>&gt;</p>
 
       
 
@@ -202,7 +207,7 @@
             <span class="tooltip-content">
               <span class="tooltip-text">
                 <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>写成这样你也点这里，不过还是谢谢你^_^<i class="icon icon-quo-right"></i></p>
                   <div class="reward-box">
                     
                     
@@ -392,19 +397,19 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">monolog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bootstrap</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">model</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">monolog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
             
             <div class="clearfix"></div>
