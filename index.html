@@ -154,6 +154,81 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-php-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/08/php-3/">浅析静态变量【转】</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/08/php-3/" class="archive-article-date">
+  	<time datetime="2017-04-08T10:03:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>通常意义上静态变量是静态分配的，他们的生命周期和程序的生命周期一样， 只有在程序退出时才结束期生命周期，这和局部变量相反，有的语言中全局变量也是静态分配的。 例如PHP和Javascript中的全局变量。</p>
+<p>静态变量可以分为：</p>
+<blockquote>
+<p>静态全局变量，PHP中的全局变量也可以理解为静态全局变量，因为除非明确unset释放，在程序运行过程中始终存在。</p>
+<p>静态局部变量，也就是在函数内定义的静态变量，函数在执行时对变量的操作会保持到下一次函数被调用。</p>
+<p>静态成员变量，这是在类中定义的静态变量，和实例变量相对应，静态成员变量可以在所有实例中共享。</p>
+</blockquote>
+<p>最常见的是<font color="#0099ff" size="16" face="黑体">静态局部变量</font>及<font color="#0099ff" size="16" face="黑体">静态成员变量</font>。局部变量只有在函数执行时才会存在。 通常，当一个函数执行完毕，它的局部变量的值就已经不存在，而且变量所占据的内存也被释放。 当下一次执行该过程时，它的所有局部变量将重新初始化。如果某个局部变量定义为静态的， 则它的值不会在函数调用结束后释放，而是继续保留变量的值。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">t</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">static</span> $i = <span class="number">0</span>;</div><div class="line">    $i++;</div><div class="line">    <span class="keyword">echo</span> $i, <span class="string">' '</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">getMy</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">$this</span>-&gt;t();</div><div class="line">    <span class="keyword">$this</span>-&gt;t();</div><div class="line">    <span class="keyword">$this</span>-&gt;t();</div><div class="line">    <span class="keyword">$this</span>-&gt;t();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>没错，结果就是1,2,3,4。 不要被t函数开头的初始化所迷惑，这个对局部静态变量没有鸟用，你可以这样理解，函数内的静态变量是对这个函数而言的全局变量，不会释放。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">静态变量</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/08/php-3/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-php-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -736,76 +811,6 @@
 
 
   
-    <article id="post-bootstrap-model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/23/bootstrap-model/">bootstrap之model填坑</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/23/bootstrap-model/" class="archive-article-date">
-  	<time datetime="2017-03-23T09:30:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-23</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>bootstrap是我最早听说的前端框架，以其简单实用，栅格式布局的响应移动端，一度成为搭建后台乃至前台界面的顶梁柱。 之前看过很多次都没有把模态框(model)搞懂，这次来，就是为了填坑。不搞懂，不睡觉。(立FLAG小王子^_^)</p>
-<p><img src="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/WallpaperStudio10-19166.jpg" alt="&#39;picture&#39;"></p>
-<p>对于这个模态框，我想先从最简单的文档开始，然后追溯他的源码。<br>
-        
-          <a class="article-more-a" href="/2017/03/23/bootstrap-model/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">bootstrap</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">model</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/23/bootstrap-model/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -888,15 +893,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bootstrap</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">model</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
