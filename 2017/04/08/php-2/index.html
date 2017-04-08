@@ -6,20 +6,27 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>忙里偷闲 | AllenGu93</title>
+  <title>后台面包屑导航类的分析 | AllenGu93</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="上一次正了八经放假得追溯到半个多月前吧，最近每天睁开眼都觉得做完好像和别人打了一架，很累，完全没有一觉醒来满血复活的感觉。迫于各种原因和赵哥请了一天假，真的想出去走走，看看。">
+  <meta name="description" content="今天又去扒赵哥的里昂官网的源码，每次膝盖都是血肉模糊……应该以后会好一点^_^
+首先这个封装好的类让我这个最初接触php的我觉得很难，现在想想，真的没啥难的，如果说难，那就是php基础之前真的太差，对很多概念的理解不透彻，好了，切入正文。
+这个类的源码先贴出来。
+12345678910111213141516171819202122232425262728293031323334353637383">
 <meta property="og:type" content="article">
-<meta property="og:title" content="忙里偷闲">
-<meta property="og:url" content="http://yoursite.com/2017/04/06/thoughts-2/index.html">
+<meta property="og:title" content="后台面包屑导航类的分析">
+<meta property="og:url" content="http://yoursite.com/2017/04/08/php-2/index.html">
 <meta property="og:site_name" content="AllenGu93">
-<meta property="og:description" content="上一次正了八经放假得追溯到半个多月前吧，最近每天睁开眼都觉得做完好像和别人打了一架，很累，完全没有一觉醒来满血复活的感觉。迫于各种原因和赵哥请了一天假，真的想出去走走，看看。">
-<meta property="og:image" content="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/oldman.jpg">
-<meta property="og:updated_time" content="2017-04-06T14:16:23.220Z">
+<meta property="og:description" content="今天又去扒赵哥的里昂官网的源码，每次膝盖都是血肉模糊……应该以后会好一点^_^
+首先这个封装好的类让我这个最初接触php的我觉得很难，现在想想，真的没啥难的，如果说难，那就是php基础之前真的太差，对很多概念的理解不透彻，好了，切入正文。
+这个类的源码先贴出来。
+12345678910111213141516171819202122232425262728293031323334353637383">
+<meta property="og:updated_time" content="2017-04-08T09:54:07.419Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="忙里偷闲">
-<meta name="twitter:description" content="上一次正了八经放假得追溯到半个多月前吧，最近每天睁开眼都觉得做完好像和别人打了一架，很累，完全没有一觉醒来满血复活的感觉。迫于各种原因和赵哥请了一天假，真的想出去走走，看看。">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/oldman.jpg">
+<meta name="twitter:title" content="后台面包屑导航类的分析">
+<meta name="twitter:description" content="今天又去扒赵哥的里昂官网的源码，每次膝盖都是血肉模糊……应该以后会好一点^_^
+首先这个封装好的类让我这个最初接触php的我觉得很难，现在想想，真的没啥难的，如果说难，那就是php基础之前真的太差，对很多概念的理解不透彻，好了，切入正文。
+这个类的源码先贴出来。
+12345678910111213141516171819202122232425262728293031323334353637383">
   
     <link rel="alternative" href="/atom.xml" title="AllenGu93" type="application/atom+xml">
   
@@ -155,37 +162,34 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-thoughts-2" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-php-2" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      忙里偷闲
+      后台面包屑导航类的分析
     </h1>
   
 
         
-        <a href="/2017/04/06/thoughts-2/" class="archive-article-date">
-  	<time datetime="2017-04-06T13:06:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-06</time>
+        <a href="/2017/04/08/php-2/" class="archive-article-date">
+  	<time datetime="2017-04-08T09:41:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>上一次正了八经放假得追溯到半个多月前吧，最近每天睁开眼都觉得做完好像和别人打了一架，很累，完全没有一觉醒来满血复活的感觉。迫于各种原因和赵哥请了一天假，真的想出去走走，看看。</p>
-<a id="more"></a>
-<p>上午收拾了一上午的屋子，洗洗衣服，毕竟也很乱了，每次收拾好总觉得可以保持，可惜从没有。以后不要给自己太多压力，很多事情可能真的是从小就养成的习惯，很难改正，就像那个被赵哥扣去的大写切换键一样。<br>下午就比较精彩了，做123路到泉城广场，把路上积累的液体排泄到恒隆高大上的洗手间，顿时整个人都舒坦了，一路向北，路过陪她来来回回吃过的芙蓉街，不过今天是一个人。没有吃太多，匆忙辗转到当年乾隆老儿出来鬼混遇到夏雨荷的地方——大明湖，4月济南的中午已然可以脱掉外套，穿着短袖瞎逛。想想也是挺省钱的，不用买春天的衣服。哈哈哈。本人路痴一枚，回到泉城广场不迷路的办法当然是….原路返回！为什么还要去泉城广场？因为我还要坐123路回家。</p>
-<p>也正是因为这个原因，让我的下午更加精彩也更加有意义。听我慢慢道来。</p>
-<p>因为在芙蓉街并没有吃多少东西，所以肚子咕咕作响，正好在即将过马路去泉城广场的路口有一家永和豆浆，我对永和有很深很深的感情，我小的时候第一次去的快餐店不是肯德基，不是麦当劳，就是永和，我还记得当时一个很粗很粗的大油条被切成很多份，可是现在是下午，看了眼菜单，点了一份中西搭配合理的下午茶——红豆粥+炸鸡排。边等边耍着懂球帝消磨时光。斜眼看了一眼旁边的一个大叔，我以为是个流浪汉，没有多想，继续刷，当我的鸡排和红豆粥吃了一半的时候，我发现他竟然一个人在喝小瓶二锅头，没有配菜，一切都没有。我不知道哪里来的勇气，我端起我的饭走到他的对面，”一起吃吧”。他很快就拿起了一块，我知道他可能真的饿了。突然，他放下了鸡排，找他为数不多的几根烟，拿了一根递到我面前，我像往常一样挥挥手示意我不吸烟。他略显失望，不过又继续看着电视，嘴里哼着电视里播放的音乐:时光时光慢些吧，不要再让你变老了。<br>偶尔会抹一下眼角，我不太敢确定是因为我的举动还是歌曲，还是别的什么。当然我不会过问太多，毕竟每个人都有自己不想和别人说的东西，更何况是一个男人。虽然他穿着拖鞋，有点邋遢，但是我很尊重他，永和也没有驱赶这样一个不速之客。很快我喝完了我的粥，他告诉我他是一个木工，最近没有工作，几乎每天都来。<br>每天都喝酒不吃东西？恩。心里有种说不出来的感觉。匆匆道别后，我离开了永和，但心里还是装着这个男人。</p>
-<p>在泉城广场的坐标下我看见几个大爷要么挥舞长鞭，啪啪作响，要么婀娜多姿，玩着一个我叫不上名字的东西。不过好生有趣。径直向前，我看到了这一天中最有感触的人。<br><img src="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/oldman.jpg" alt="&#39;picture&#39;"></p>
-<p>他看到我在看他，明媚的笑容让人舒服，小伙子来玩吧。这句话让我本能的想起是否是做生意的，然而并不是。老人家只是想把自己会的东西教给更多人，他的活力和心态不夸张的说比很多20，甚至10几岁的年轻人都要好。我汗颜的是我把23岁过成了70岁的样子，而他把心态调整到了最年轻的状态。也正像我在读的书里写的一样，我把所有鸡毛蒜皮的小事当成天塌下来，总有你疲惫的时候。</p>
-<p>开开心心的玩了一个小时，教给我很多动作，时不时的夸赞，一切让你觉得舒服，自然，仿佛他是你的亲人，没有任何距离感，我想起那句真正的成熟应该就是对整个世界温柔吧。这个大爷真的做到了。至少在我看来是这样。</p>
-<p>双脚打着哆嗦继续往前走，我听到踢毽子的声音，自从离开上家公司，我就再也没有和别人好好踢一次毽子，自然想掺和一下，两个60岁以上的大妈在对着踢，我知道这样的局面肯定希望多一个人，我就笑嘻嘻的对她们毛遂自荐，当然不出我所料，她们也希望多一个人让局面更多变。自信点说，我对我踢毽子的水平还是有底的，很快她们对我处理毽子的脚法交口称赞，但是那时候我心已经在想别的了，我母亲也和她们年纪相仿，不用说抬腿过腰，就是稍微快速移动，可能她老人家都吃不消，真的替她们的子女感到欣慰，那是一种看不到的财富，老人每天开开心心，身体健健康康，这是一个家庭最大的福报。酣战三十分钟左右，我这小身体彻底吃不消了。好久没运动的后果就是你稍微活动量一大，天昏地暗。我该走了，阿姨们，很高心今天能和你们一起踢毽子！匆匆辞别，我也该回家了，我也该重新收拾心情，调整身体继续战斗。</p>
+        <p>今天又去扒赵哥的里昂官网的源码，每次膝盖都是血肉模糊……应该以后会好一点^_^</p>
+<p>首先这个封装好的类让我这个最初接触php的我觉得很难，现在想想，真的没啥难的，如果说难，那就是php基础之前真的太差，对很多概念的理解不透彻，好了，切入正文。</p>
+<p>这个类的源码先贴出来。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BreadCrumb</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $title;</div><div class="line">    <span class="keyword">public</span> $url;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> $items;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($title, $url=null)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;title = $title;</div><div class="line">        <span class="keyword">$this</span>-&gt;url = $url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">push</span><span class="params">($title, $url=null)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">static</span>::items()-&gt;push(<span class="keyword">new</span> Breadcrumb($title, $url));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isLast</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $last = <span class="keyword">static</span>::items()-&gt;last();</div><div class="line">        <span class="keyword">return</span> $last-&gt;url == <span class="keyword">$this</span>-&gt;url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Handle dynamic method calls into the method.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span>  string  $method</div><div class="line">     * <span class="doctag">@param</span>  array   $parameters</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($method, $parameters)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>(<span class="keyword">static</span>::items(), $method), $parameters);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">items</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == <span class="keyword">static</span>::$items) &#123;</div><div class="line">            <span class="keyword">static</span>::$items = <span class="keyword">new</span> Collection();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">static</span>::$items;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Handle dynamic static method calls into the method.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span>  string  $method</div><div class="line">     * <span class="doctag">@param</span>  array   $parameters</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">__callStatic</span><span class="params">($method, $parameters)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>(<span class="keyword">static</span>::items(), $method), $parameters);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>寥寥数行代码要分析的主要是，额，思想。对，就是封装，继承的思想。这个在我一开学php的时候觉得没什么东西啊，现在想想，图样图森破！一个菜鸟和高手的差别就在这里，Don‘t Repeat Yourself——赵哥箴言。当然这是一个优秀的程序员的基本功。对于后台来说，面包屑是再常用不过的东西，不封装好，会给你之后带来更多麻烦，而继承呢，一定要把根节点在基类里定义好，这样才能做到面包屑的根节点-&gt;子节点的效果。其次，对于类变量的使用也是一个亮点。好了，我把基类的代码也贴出来。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        </div><div class="line">        View::addLocation(app_path() . <span class="string">'/themes/admin'</span>);</div><div class="line"></div><div class="line">        <span class="keyword">parent</span>::__construct();</div><div class="line"></div><div class="line">        BreadCrumb::push(<span class="string">'管理中心'</span>, action(<span class="string">'Admin\DashboardController@getIndex'</span>));</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>最为重要的初始化代码，把根节点push到一个空的collection中，然后继承了基类的子类可以继续通过push将要添加的子节点送入collection中，这也是实现面包屑的核心思想。至于代码，我承认现在的我可能想不到这样写，但是我一定要努力向这样coding。</p>
 <blockquote>
-<p>年轻人有年轻人的工作，但是我千不该万不该把年轻人的生活给过成了70岁，这是我今天一天都在反思的一个问题。谢谢你们，叔叔阿姨。祝您身体健康，万寿无疆！</p>
+<p>DONT REPEAT YOURSELF!</p>
 </blockquote>
 
       
@@ -221,7 +225,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">生活</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">静态变量</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
         		</li>
       		
 		</ul>
@@ -277,7 +289,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/06/thoughts-2/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/08/php-2/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -291,18 +303,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/08/php-0/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          命名空间的再理解
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/03/29/js-0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">真正的无刷新显示结果</div>
+    <a href="/2017/04/08/php-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">后期静态绑定</div>
       <i class="icon-circle-right"></i>
     </a>
   

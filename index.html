@@ -154,6 +154,146 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-php-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/08/php-2/">后台面包屑导航类的分析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/08/php-2/" class="archive-article-date">
+  	<time datetime="2017-04-08T09:41:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天又去扒赵哥的里昂官网的源码，每次膝盖都是血肉模糊……应该以后会好一点^_^</p>
+<p>首先这个封装好的类让我这个最初接触php的我觉得很难，现在想想，真的没啥难的，如果说难，那就是php基础之前真的太差，对很多概念的理解不透彻，好了，切入正文。</p>
+<p>这个类的源码先贴出来。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&lt;?php</span> </div><div class="line"></div><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">BreadCrumb</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">public</span> $title;</div><div class="line">    <span class="keyword">public</span> $url;</div><div class="line"></div><div class="line">    <span class="keyword">protected</span> <span class="keyword">static</span> $items;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($title, $url=null)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">$this</span>-&gt;title = $title;</div><div class="line">        <span class="keyword">$this</span>-&gt;url = $url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">push</span><span class="params">($title, $url=null)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">static</span>::items()-&gt;push(<span class="keyword">new</span> Breadcrumb($title, $url));</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">isLast</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        $last = <span class="keyword">static</span>::items()-&gt;last();</div><div class="line">        <span class="keyword">return</span> $last-&gt;url == <span class="keyword">$this</span>-&gt;url;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Handle dynamic method calls into the method.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span>  string  $method</div><div class="line">     * <span class="doctag">@param</span>  array   $parameters</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($method, $parameters)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>(<span class="keyword">static</span>::items(), $method), $parameters);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">items</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">if</span> (<span class="keyword">null</span> == <span class="keyword">static</span>::$items) &#123;</div><div class="line">            <span class="keyword">static</span>::$items = <span class="keyword">new</span> Collection();</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">static</span>::$items;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">/**</span></div><div class="line">     * Handle dynamic static method calls into the method.</div><div class="line">     *</div><div class="line">     * <span class="doctag">@param</span>  string  $method</div><div class="line">     * <span class="doctag">@param</span>  array   $parameters</div><div class="line">     * <span class="doctag">@return</span> mixed</div><div class="line">     */</div><div class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">__callStatic</span><span class="params">($method, $parameters)</span></span></div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>(<span class="keyword">static</span>::items(), $method), $parameters);</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>寥寥数行代码要分析的主要是，额，思想。对，就是封装，继承的思想。这个在我一开学php的时候觉得没什么东西啊，现在想想，图样图森破！一个菜鸟和高手的差别就在这里，Don‘t Repeat Yourself——赵哥箴言。当然这是一个优秀的程序员的基本功。对于后台来说，面包屑是再常用不过的东西，不封装好，会给你之后带来更多麻烦，而继承呢，一定要把根节点在基类里定义好，这样才能做到面包屑的根节点-&gt;子节点的效果。其次，对于类变量的使用也是一个亮点。好了，我把基类的代码也贴出来。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">()</span></span></div><div class="line">    &#123;</div><div class="line">        </div><div class="line">        View::addLocation(app_path() . <span class="string">'/themes/admin'</span>);</div><div class="line"></div><div class="line">        <span class="keyword">parent</span>::__construct();</div><div class="line"></div><div class="line">        BreadCrumb::push(<span class="string">'管理中心'</span>, action(<span class="string">'Admin\DashboardController@getIndex'</span>));</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>最为重要的初始化代码，把根节点push到一个空的collection中，然后继承了基类的子类可以继续通过push将要添加的子节点送入collection中，这也是实现面包屑的核心思想。至于代码，我承认现在的我可能想不到这样写，但是我一定要努力向这样coding。</p>
+<blockquote>
+<p>DONT REPEAT YOURSELF!</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">静态变量</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/08/php-2/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-php-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/08/php-1/">后期静态绑定</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/08/php-1/" class="archive-article-date">
+  	<time datetime="2017-04-08T08:26:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>后期静态绑定</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/08/php-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-php-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -671,74 +811,10 @@
 
 
   
-    <article id="post-monolog-mongodb" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/22/monolog-mongodb/">monolog &amp; mongodb的强强联手</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/22/monolog-mongodb/" class="archive-article-date">
-  	<time datetime="2017-03-22T14:55:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-22</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>monolog和mongodb的强强联手<br>网站日志管理中将这两把利剑同时使用，效果如何，之后续……<br>因为这个日志管理还没做完，我边搜集资料边完成项目，文章会从“这是什么”，“为什么要用它”，“如何用”这三个方面展开。</p>
-        
-          <a class="article-more-a" href="/2017/03/22/monolog-mongodb/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">monolog</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">mongodb</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/22/monolog-mongodb/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
+    <nav id="page-nav">
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+    </nav>
   
 
 
@@ -817,15 +893,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">bootstrap</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">model</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">javascript</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -853,7 +929,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">感想</a>
+                <a href="javascript:void(0)" class="js-tag color5">静态变量</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">laravel</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -866,6 +946,10 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">感想</a>
               </li>
             
             <div class="clearfix"></div>
