@@ -6,18 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>【闲篇】你的一行代码值多少钱？ | AllenGu93</title>
+  <title>laravel巧用php原生的技巧(零) | AllenGu93</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="工作中，我们往往会听到同事或者自己键盘疯狂敲击的声音，在我刚刚进入这个行当前，我听到这个声音后，会把他和大牛联系到一起。直到最近一件小事，让我对编程效率有了一个更深入的看法。">
+  <meta name="description" content="php有很多很有用的原生方法，在经过laravel框架的封装后可以实现很多干净的效果。今天先说一个，Model为什么可以使用静态where方法？
+我想这个问题如果摆在一个经常使用laravel但又不查源码的童鞋面前，可能会出现欲辨已忘言的情况。
+下面我就把这个问题慢慢的解释开，对于像我这样的newbee来说，确实值得好好咂摸一下。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【闲篇】你的一行代码值多少钱？">
-<meta property="og:url" content="http://yoursite.com/2017/03/26/thoughts-1/index.html">
+<meta property="og:title" content="laravel巧用php原生的技巧(零)">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/laravel-0/index.html">
 <meta property="og:site_name" content="AllenGu93">
-<meta property="og:description" content="工作中，我们往往会听到同事或者自己键盘疯狂敲击的声音，在我刚刚进入这个行当前，我听到这个声音后，会把他和大牛联系到一起。直到最近一件小事，让我对编程效率有了一个更深入的看法。">
-<meta property="og:updated_time" content="2017-03-27T15:37:10.658Z">
+<meta property="og:description" content="php有很多很有用的原生方法，在经过laravel框架的封装后可以实现很多干净的效果。今天先说一个，Model为什么可以使用静态where方法？
+我想这个问题如果摆在一个经常使用laravel但又不查源码的童鞋面前，可能会出现欲辨已忘言的情况。
+下面我就把这个问题慢慢的解释开，对于像我这样的newbee来说，确实值得好好咂摸一下。">
+<meta property="og:updated_time" content="2017-04-10T05:20:30.968Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【闲篇】你的一行代码值多少钱？">
-<meta name="twitter:description" content="工作中，我们往往会听到同事或者自己键盘疯狂敲击的声音，在我刚刚进入这个行当前，我听到这个声音后，会把他和大牛联系到一起。直到最近一件小事，让我对编程效率有了一个更深入的看法。">
+<meta name="twitter:title" content="laravel巧用php原生的技巧(零)">
+<meta name="twitter:description" content="php有很多很有用的原生方法，在经过laravel框架的封装后可以实现很多干净的效果。今天先说一个，Model为什么可以使用静态where方法？
+我想这个问题如果摆在一个经常使用laravel但又不查源码的童鞋面前，可能会出现欲辨已忘言的情况。
+下面我就把这个问题慢慢的解释开，对于像我这样的newbee来说，确实值得好好咂摸一下。">
   
     <link rel="alternative" href="/atom.xml" title="AllenGu93" type="application/atom+xml">
   
@@ -153,41 +159,32 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-thoughts-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-laravel-0" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      【闲篇】你的一行代码值多少钱？
+      laravel巧用php原生的技巧(零)
     </h1>
   
 
         
-        <a href="/2017/03/26/thoughts-1/" class="archive-article-date">
-  	<time datetime="2017-03-26T08:40:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-26</time>
+        <a href="/2017/04/10/laravel-0/" class="archive-article-date">
+  	<time datetime="2017-04-10T03:39:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>工作中，我们往往会听到同事或者自己键盘疯狂敲击的声音，在我刚刚进入这个行当前，我听到这个声音后，会把他和大牛联系到一起。直到最近一件小事，让我对编程效率有了一个更深入的看法。 </p>
+        <p>php有很多很有用的原生方法，在经过laravel框架的封装后可以实现很多干净的效果。<br>今天先说一个，Model为什么可以使用静态where方法？</p>
+<p>我想这个问题如果摆在一个经常使用laravel但又不查源码的童鞋面前，可能会出现欲辨已忘言的情况。</p>
+<p>下面我就把这个问题慢慢的解释开，对于像我这样的newbee来说，确实值得好好咂摸一下。</p>
 <a id="more"></a>
-<p>最近做的一个日志管理模块，需要添加批量删除功能，作为一个不太熟悉jquery的我，硬是用了一个点击事件+循环去解决这个小问题，被老大看到，当然不能忍。当他改完代码后我发现冗长的js脚本只剩下干净的一行时，汗颜之情难以言表。</p>
-<p>知乎上有一个数据，具体如何得到的，我不清楚。在此引用只是因为对现在的我有一个启发。</p>
-<blockquote>
-<p>数据是这样的，北上广的一个程序员每天的提交代码量平均在30行左右。</p>
-</blockquote>
-<p>可能现在的我每天要写200行代码，但是有200行在别人看是垃圾，而别人只用20行解决，你该如何说你的代码值多少钱？</p>
-<blockquote>
-<p>真正优秀的程序员写的代码是简单的，简洁的，高效的。</p>
-</blockquote>
-<h3 id="所想"><a href="#所想" class="headerlink" title="所想"></a>所想</h3><p>程序员的一天假如算8小时，我们应该花费多少时间在coding上呢？当然这个时间就单单计算码字，其实一小时足矣，而且这其中还有你最后的调试时间。那剩下的时间呢，我认为更多的考虑产品的逻辑和易用性，安全性等等，coding只是把你考虑的东西写一个总结，然后提交。如果coding的时间过长，一来你是newbie，二来可能代码过于复杂或者代码量过大。</p>
-<blockquote>
-<p>学着写出高效简洁的代码，既可以取悦自己，也可以减少别人的痛苦。何乐而不为。<br>                                                     -allen gu</p>
-</blockquote>
+<p>这里会用到的一些基础方法包括，两个魔术方法 <strong>call&amp;</strong>callStatic。<br>另外会用到call_user_func_array()【调用回调函数，并把一个数组参数作为回调函数的参数】方法，这个方法我个人不大常用，但是在laravel中，这三个方法可以让代码干净整洁。</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/**</span></div><div class="line"> * Handle dynamic method calls into the method.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span>  string  $method</div><div class="line"> * <span class="doctag">@param</span>  array   $parameters</div><div class="line"> * <span class="doctag">@return</span> mixed</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__call</span><span class="params">($method, $parameters)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span> (in_array($method, <span class="keyword">array</span>(<span class="string">'increment'</span>, <span class="string">'decrement'</span>)))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>(<span class="keyword">$this</span>, $method), $parameters);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    $query = <span class="keyword">$this</span>-&gt;newQuery();</div><div class="line"></div><div class="line">    <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>($query, $method), $parameters);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">/**</span></div><div class="line"> * Handle dynamic static method calls into the method.</div><div class="line"> *</div><div class="line"> * <span class="doctag">@param</span>  string  $method</div><div class="line"> * <span class="doctag">@param</span>  array   $parameters</div><div class="line"> * <span class="doctag">@return</span> mixed</div><div class="line"> */</div><div class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="function"><span class="keyword">function</span> <span class="title">__callStatic</span><span class="params">($method, $parameters)</span></span></div><div class="line">&#123;</div><div class="line">    $instance = <span class="keyword">new</span> <span class="keyword">static</span>;</div><div class="line"></div><div class="line">    <span class="keyword">return</span> call_user_func_array(<span class="keyword">array</span>($instance, $method), $parameters);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -222,7 +219,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">感想</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">技巧</a>
         		</li>
       		
 		</ul>
@@ -278,7 +283,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/03/26/thoughts-1/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/10/laravel-0/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -292,18 +297,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/03/27/mongodb/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2017/04/10/php-5/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          mongodb
+          __get和白名单数组搭配使用
         
       </div>
     </a>
   
   
-    <a href="/2017/03/24/javascript-basic/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">浅谈非侵入式javascript</div>
+    <a href="/2017/04/09/thoughts-3/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title"></div>
       <i class="icon-circle-right"></i>
     </a>
   
