@@ -6,18 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>后期静态绑定 | AllenGu93</title>
+  <title>巧用session存储全局变量 | AllenGu93</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="后期静态绑定">
+  <meta name="description" content="session是一个存储在服务器端的一个小型数据表，他可以将客户本次会话的内容存储起来，根据uid来分辨这个会话属于哪个用户。根据这个属性，我们可以把本次会话中随时拿来就用的东西放到session中存储。例如今天我把上一次登陆的时间放到了session中，在本次会话中，只要有网络，你就可以通过拿到这个时间。具体的实现方法是，数据库用户表里有一个字段叫做last_login,你登陆成功时，把这个字段">
 <meta property="og:type" content="article">
-<meta property="og:title" content="后期静态绑定">
-<meta property="og:url" content="http://yoursite.com/2017/04/08/php-1/index.html">
+<meta property="og:title" content="巧用session存储全局变量">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/laravel-1/index.html">
 <meta property="og:site_name" content="AllenGu93">
-<meta property="og:description" content="后期静态绑定">
-<meta property="og:updated_time" content="2017-04-08T08:34:08.043Z">
+<meta property="og:description" content="session是一个存储在服务器端的一个小型数据表，他可以将客户本次会话的内容存储起来，根据uid来分辨这个会话属于哪个用户。根据这个属性，我们可以把本次会话中随时拿来就用的东西放到session中存储。例如今天我把上一次登陆的时间放到了session中，在本次会话中，只要有网络，你就可以通过拿到这个时间。具体的实现方法是，数据库用户表里有一个字段叫做last_login,你登陆成功时，把这个字段">
+<meta property="og:image" content="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/redis.PNG">
+<meta property="og:updated_time" content="2017-04-10T09:49:47.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="后期静态绑定">
-<meta name="twitter:description" content="后期静态绑定">
+<meta name="twitter:title" content="巧用session存储全局变量">
+<meta name="twitter:description" content="session是一个存储在服务器端的一个小型数据表，他可以将客户本次会话的内容存储起来，根据uid来分辨这个会话属于哪个用户。根据这个属性，我们可以把本次会话中随时拿来就用的东西放到session中存储。例如今天我把上一次登陆的时间放到了session中，在本次会话中，只要有网络，你就可以通过拿到这个时间。具体的实现方法是，数据库用户表里有一个字段叫做last_login,你登陆成功时，把这个字段">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/redis.PNG">
   
     <link rel="alternative" href="/atom.xml" title="AllenGu93" type="application/atom+xml">
   
@@ -153,27 +155,35 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-php-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-laravel-1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      后期静态绑定
+      巧用session存储全局变量
     </h1>
   
 
         
-        <a href="/2017/04/08/php-1/" class="archive-article-date">
-  	<time datetime="2017-04-08T08:26:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-08</time>
+        <a href="/2017/04/10/laravel-1/" class="archive-article-date">
+  	<time datetime="2017-04-10T09:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>后期静态绑定</p>
+        <p>session是一个存储在服务器端的一个小型数据表，他可以将客户本次会话的内容存储起来，根据uid来分辨这个会话属于哪个用户。根据这个属性，我们可以把本次会话中随时拿来就用的东西放到session中存储。<br>例如今天我把上一次登陆的时间放到了session中，在本次会话中，只要有网络，你就可以通过拿到这个时间。具体的实现方法是，数据库用户表里有一个字段叫做last_login,你登陆成功时，把这个字段的值取出，存到session中，然后更新这个字段。 </p>
+<p>laravel默认是将session存储到了file中，假如说，上次登录时间在每个页面都有，那文件的存取是否是高效快捷的？ 我们当然还要更优解，作为存取频繁的数据，redis这个内存数据库的效率自然不用说，肯定要比数据库或者文件存取要快的多的多。今天做的就是用redis来存取session，这样线上的效率肯定大大提升。<br><a id="more"></a></p>
+<p>具体操作简单至极，因为laravel都给你做了完美的封装，只要你配置就可以。<br>1.在laravel4中，把session的驱动(driver)改成redis<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    | Default Session Driver</div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    |</div><div class="line">    | This option controls the default session "driver" that will be used on</div><div class="line">    | requests. By default, we will use the lightweight native driver but</div><div class="line">    | you may specify any of the other wonderful drivers provided here.</div><div class="line">    |</div><div class="line">    | Supported: "file", "cookie", "database", "apc",</div><div class="line">    |            "memcached", "redis", "array"</div><div class="line">    |</div><div class="line">    */</div><div class="line"></div><div class="line">    <span class="string">'driver'</span> =&gt; <span class="string">'redis'</span>,</div></pre></td></tr></table></figure></p>
+<p>2去config\database.php文件里改一下redis的配置，【默认情况下，Redis 服务会提供 16 个数据库，Laravel 使用数据库 0 （请见 Redis 文档）作为缓存和 Session 的存储。】所以说，不要把这两个放在一个redis库里，玩意哪天你突然要把缓存全删除，那么就会出现所有用户都要重新的登陆的壮观的景象，所以，一定分开存。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="string">'redis'</span> =&gt; <span class="keyword">array</span>(</div><div class="line"></div><div class="line">    <span class="string">'cluster'</span> =&gt; <span class="keyword">false</span>,</div><div class="line"></div><div class="line">    <span class="string">'default'</span> =&gt; <span class="keyword">array</span>(</div><div class="line">        <span class="string">'host'</span>     =&gt; <span class="string">'127.0.0.1'</span>,</div><div class="line">        <span class="string">'port'</span>     =&gt; <span class="number">6379</span>,</div><div class="line">        <span class="string">'database'</span> =&gt; <span class="number">0</span>,</div><div class="line">    ),</div><div class="line"></div><div class="line">    <span class="string">'session'</span> =&gt; <span class="keyword">array</span>(</div><div class="line">        <span class="string">'host'</span>     =&gt; <span class="string">'127.0.0.1'</span>,</div><div class="line">        <span class="string">'port'</span>     =&gt; <span class="number">6379</span>,</div><div class="line">        <span class="string">'database'</span> =&gt; <span class="number">1</span>,</div><div class="line">    ),</div><div class="line">)</div></pre></td></tr></table></figure></p>
+<p>3.把session的连接改成你设置的专门为session准备的redis库。<br><figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/*</span></div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    | Session Database Connection</div><div class="line">    |--------------------------------------------------------------------------</div><div class="line">    |</div><div class="line">    | When using the "database" or "redis" session drivers, you may specify a</div><div class="line">    | connection that should be used to manage these sessions. This should</div><div class="line">    | correspond to a connection in your database configuration options.</div><div class="line">    |</div><div class="line">    */</div><div class="line"></div><div class="line">    <span class="string">'connection'</span> =&gt; <span class="string">'session'</span>,</div></pre></td></tr></table></figure></p>
+<p>4.大功告成。这时候你就把session从文件存储转移到了redis。你说怎么确定成功了？方法很多，可以删除所有的session文件，看能否取到你想要的session键值，除此之外就是直接去redis的1号库里喊一嗓子，’那个，刚才有没有一个叫laravel的家伙进来？’，然后看到了这个<br><img src="https://raw.githubusercontent.com/AllenGu93/imageForHexo/master/redis.PNG" alt="&#39;monolog&#39;"></p>
+<blockquote>
+<p>Try something new!</p>
+</blockquote>
 
       
 
@@ -208,7 +218,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">session</a>
         		</li>
       		
 		</ul>
@@ -264,7 +278,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/08/php-1/" alt="微信分享二维码">
+      <img src="http://s.jiathis.com/qrcode.php?url=http://yoursite.com/2017/04/10/laravel-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -278,18 +292,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2017/04/08/php-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          后台面包屑导航类的分析
-        
-      </div>
-    </a>
   
-  
-    <a href="/2017/04/08/php-0/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">命名空间的再理解</div>
+    <a href="/2017/04/10/php-5/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">__get和白名单数组搭配使用</div>
       <i class="icon-circle-right"></i>
     </a>
   
