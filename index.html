@@ -154,6 +154,135 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-redis-0" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/12/redis-0/">redis存储</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/12/redis-0/" class="archive-article-date">
+  	<time datetime="2017-04-12T03:28:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>早先用laravel框架把session存储到了redis里，为了获取线上的存取高效。那么今天就专门开一篇介绍redis。</p>
+<p><img src="https://github.com/AllenGu93/imageForHexo/blob/master/redis.jpg" alt="&#39;redis&#39;"></p>
+<p><a href="https://redis.io/documentation">redis 官网</a></p>
+        
+          <a class="article-more-a" href="/2017/04/12/redis-0/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/12/redis-0/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
+    <article id="post-redis-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/04/12/redis-1/">redis的基本命令</a>
+    </h1>
+  
+
+        
+        <a href="/2017/04/12/redis-1/" class="archive-article-date">
+  	<time datetime="2017-04-12T03:28:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最基础的安装就不赘述了，开启server，然后打开客户端，输入ping得到pong后，证明我们的redis已经打通。</p>
+<p>我们就可以通过其他语言像调用mysql一样存储数据到redis，而且他远比mysql要简单的多，因为只是一个键值对，没有任何关联关系。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">redis</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/04/12/redis-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+
+
+
+  
     <article id="post-php-6" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -298,7 +427,7 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>laravel里御用了一款时间库，这个和laravel一样，是对php原生时间类date的封装，能得到laravel的认可，也说明了这个库确实还很优秀。</p>
-<p>我们还是老样子，先把他的github和官网贴出来。官方,一定是官方。<br><a href="http://carbon.nesbot.com/docs/" target="_blank" rel="external">carbon 官方文档</a><br><a href="https://github.com/briannesbitt/carbon" target="_blank" rel="external">carbon github</a><br>在composer里说明一下,然后app.php配置一下。<br>然后就看文档吧,骚年。</p>
+<p>我们还是老样子，先把他的github和官网贴出来。官方,一定是官方。<br><a href="http://carbon.nesbot.com/docs/" target="_blank" rel="external">carbon 官方文档</a><br><a href="https://github.com/briannesbitt/carbon" target="_blank" rel="external">carbon github</a><br><a href="http://php.net/manual/en/timezones.asia.php" target="_blank" rel="external">php只认这些标准时区</a><br>因为是御用类库,所以不用再在composer中说明,然后app.php配置一下。<br>然后就看文档吧,骚年。</p>
 
       
 
@@ -360,7 +489,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>验证码的存在是很多网站为了避免被AI欺负所建立，就像12306那个人都看不清的验证码就是这样的存在目的。反正每次春运抢票我都是十分的紧张，然而验证码的破解好似并不像我们外行人想象的那么难。<br><img src="https://github.com/AllenGu93/imageForHexo/blob/master/yanzheng.jpg" alt="验证码"><br>但是现在我们的重点还是返回到技术的层面。</p>
+        <p>验证码的存在是很多网站为了避免被AI欺负所建立，就像12306那个人都看不清的验证码就是这样的存在目的。反正每次春运抢票我都是十分的紧张，然而验证码的破解好似并不像我们外行人想象的那么难。<br>但是现在我们的重点还是返回到技术的层面。</p>
         
           <a class="article-more-a" href="/2017/04/11/laravel-4/#more">more >></a>
         
@@ -492,8 +621,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首先何为持久化登陆，简单举个栗子，最常见的就是 ‘记住我’ 功能。<br>那laravel是如何做到这个功能的？</p>
-<p>这个功能在laravel中是很简单的一个功能。</p>
+        <p>首先何为持久化登陆，简单举个栗子，最常见的就是 ‘记住我’ 功能。为了用户信息安全，session的存储时间往往不是那么长，发呆时间一般在几个小时到十几个小时为宜，假如这个用户超过session的存储时间不去动鼠标，那么session会自动销毁，那么就需要重新登陆了。对于安全确实做到了，但是有时会略显麻烦，试想一个只有你用的系统，每天都输入辣么熟悉的用户名密码是否让你厌烦？所以记住我的功能就是延长session的存储时间，让session销毁的权利放到你手里。<br><a href="http://www.yixieshi.com/14368.html" target="_blank" rel="external">参考资料</a></p>
+<blockquote>
+<p>那laravel是如何做到这个功能的？</p>
+</blockquote>
+<p>这个功能在laravel中是很简单的一个功能。<br>确保前台页面有一个记住我的checkbox，</p>
 <blockquote>
 <p>之后补一个原生的记住我功能。<br>参考资料：<a href="http://stackoverflow.com/questions/1354999/keep-me-logged-in-the-best-approach" target="_blank" rel="external">如何更安全的实现记住我的功能</a></p>
 </blockquote>
@@ -685,141 +817,6 @@
 
 
   
-    <article id="post-laravel-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/laravel-1/">巧用session存储全局变量</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/10/laravel-1/" class="archive-article-date">
-  	<time datetime="2017-04-10T09:08:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>session是一个存储在服务器端的一个小型数据表，他可以将客户本次会话的内容存储起来，根据uid来分辨这个会话属于哪个用户。根据这个属性，我们可以把本次会话中随时拿来就用的东西放到session中存储。<br>例如今天我把上一次登陆的时间放到了session中，在本次会话中，只要有网络，你就可以通过拿到这个时间。具体的实现方法是，数据库用户表里有一个字段叫做last_login,你登陆成功时，把这个字段的值取出，存到session中，然后更新这个字段。 </p>
-<p>laravel默认是将session存储到了file中，假如说，上次登录时间在每个页面都有，那文件的存取是否是高效快捷的？ 我们当然还要更优解，作为存取频繁的数据，redis这个内存数据库的效率自然不用说，肯定要比数据库或者文件存取要快的多的多。今天做的就是用redis来存取session，这样线上的效率肯定大大提升。<br>
-        
-          <a class="article-more-a" href="/2017/04/10/laravel-1/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">session</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">laravel</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/10/laravel-1/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
-    <article id="post-php-5" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/04/10/php-5/">__get和白名单数组搭配使用</a>
-    </h1>
-  
-
-        
-        <a href="/2017/04/10/php-5/" class="archive-article-date">
-  	<time datetime="2017-04-10T05:25:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-04-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我们知道__get()方法可以把不可见的属性获得，但是这样真的好吗？属性的权限本来就是为了避免出现越权行为，所以，这里有个小技巧，搭配使用白名单数组。</p>
-<figure class="highlight php"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">$white_list = [<span class="string">'name'</span>];</div><div class="line"><span class="keyword">private</span> $name = <span class="string">'allen is a php coder!'</span>;</div><div class="line"></div><div class="line"><span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__get</span><span class="params">($attr)</span></span></div><div class="line">&#123;</div><div class="line">    <span class="keyword">if</span>(in_array($attr, <span class="keyword">$this</span>-&gt;$white_list))</div><div class="line">    &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">$this</span>-&gt;$name;</div><div class="line">    &#125;<span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> <span class="string">'你的查找属于FBI绝密档案!!!'</span></div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<blockquote>
-<p>通过这个小案例，我们就能知道__get()这个方法的使用有些利弊，一定要考虑清楚之后再使用。</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">php</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/04/10/php-5/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -902,11 +899,11 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">编程习惯</a>
+                <a href="javascript:void(0)" class="js-tag color5">bootstrap</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+                <a href="javascript:void(0)" class="js-tag color1">model</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -914,19 +911,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">js</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">bootstrap</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">model</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -950,6 +935,18 @@
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">编程习惯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">读书笔记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">命名空间</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">php</a>
               </li>
              
@@ -958,7 +955,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">命名空间</a>
+                <a href="javascript:void(0)" class="js-tag color5">静态变量</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -966,19 +963,11 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">monolog</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">静态变量</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">插件</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">ajax</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -990,7 +979,7 @@
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">思维习惯</a>
+                <a href="javascript:void(0)" class="js-tag color1">redis</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -999,6 +988,18 @@
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">生活</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">思维习惯</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">monolog</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">mongodb</a>
               </li>
             
             <div class="clearfix"></div>
